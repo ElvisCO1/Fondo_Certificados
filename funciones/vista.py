@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from .arrastrar import USE_DND, DND_FILES
 from .estilos import BG_PRIMARY, BG_SECONDARY, BORDER_COLOR, ACCENT_BLUE
+from .identidad import abrir_acerca_de
 
 def construir_interfaz(self):
     self.padding = {'padx': 16, 'pady': 8}
@@ -10,6 +11,8 @@ def construir_interfaz(self):
     self.header_frame.configure(style='TFrame')
     self.header_frame.grid(row=0, column=0, sticky='ew', padx=16, pady=(16, 8))
     self.header_frame.grid_columnconfigure(1, weight=1)
+    ttk.Button(self.header_frame, text='Acerca de', style='Minimal.TButton',
+               command=lambda: abrir_acerca_de(self)).grid(row=0, column=2, sticky='e', padx=(12, 8))
     self.actions_frame = ttk.Frame(self.header_frame)
     self.actions_frame.configure(style='TFrame')
     self.actions_frame.grid(row=0, column=0, sticky='w')
@@ -18,7 +21,7 @@ def construir_interfaz(self):
     self.btn_combinar = ttk.Button(self.actions_frame, text='🚀 Combinar', command=self.combinar, style='CompactPrimary.TButton')
     self.btn_combinar.grid(row=0, column=2)
     self.btn_configuracion = ttk.Button(self.header_frame, text='⚙️', command=self.abrir_configuracion, style='Config.TButton', width=3)
-    self.btn_configuracion.grid(row=0, column=2, sticky='e')
+    self.btn_configuracion.grid(row=0, column=3, sticky='e')
     self.separator1 = ttk.Separator(self.root, orient=tk.HORIZONTAL)
     self.separator1.grid(row=1, column=0, sticky='ew', padx=16, pady=(0, 16))
     self.config_frame = ttk.Frame(self.root)

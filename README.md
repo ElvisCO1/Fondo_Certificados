@@ -2,6 +2,8 @@
 
 Aplicación de escritorio en Python para aplicar fondos a certificados PDF generados desde hojas de cálculo, sin incluir el fondo en la propia hoja. Permite procesar varios archivos y elegir entre fondos para certificados acreditados y no acreditados.
 
+El botón **Acerca de**, junto al engranaje de Configuración, presenta el logo, la versión y el autor. En Configuración aparece la firma «Creado por Elvis Candia Ochoa» en la esquina inferior derecha. La carpeta `assets` contiene el logo y debe acompañar al código.
+
 ## Requisitos
 
 - Python 3.12 (versión utilizada para verificar las pruebas).

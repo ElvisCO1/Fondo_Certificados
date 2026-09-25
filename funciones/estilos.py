@@ -19,6 +19,10 @@ def configurar_estilos(root):
     style.theme_use("clam")
     style.configure("TLabel", background=BG_PRIMARY, foreground=TEXT_PRIMARY, font=("Segoe UI", 9))
     style.configure("TFrame", background=BG_PRIMARY)
+    style.configure('BrandTitle.TLabel', background=BG_PRIMARY, foreground=TEXT_PRIMARY,
+                    font=('Segoe UI', 13, 'bold'))
+    style.configure('Author.TLabel', background=BG_PRIMARY, foreground=TEXT_SECONDARY,
+                    font=('Segoe UI', 9))
 
     # Estilo para títulos de sección
     style.configure("SectionTitle.TLabel", font=("Segoe UI", 11, "bold"), foreground=TEXT_PRIMARY, background=BG_PRIMARY)

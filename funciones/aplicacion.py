@@ -11,11 +11,14 @@ from .estilos import TEXT_SECONDARY, ACCENT_GREEN, ACCENT_RED
 from .procesamiento import procesar_pdfs_background
 from .utilidades import acortar_texto_ui, open_folder
 from .vista import construir_interfaz
+from .identidad import NOMBRE_APP, cargar_logos
 
 class AplicacionPDF(ConfiguracionMixin):
     def __init__(self):
         self.root = crear_ventana()
-        self.root.title("PDF Combiner Pro")
+        self.root.title(NOMBRE_APP)
+        self.logos = cargar_logos(self.root)
+        self.root.iconphoto(True, self.logos[32], self.logos[16])
         self.root.configure(bg="#FAFAFA")
         self.root.grid_columnconfigure(0, weight=1)
         self.style = configurar_estilos(self.root)

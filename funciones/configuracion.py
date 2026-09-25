@@ -10,6 +10,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from pypdf import PdfReader
 from .estilos import BG_PRIMARY, ACCENT_GREEN
+from .identidad import AUTOR
 
 CONFIG_FILE = Path(__file__).resolve().parent.parent / "pdf_combiner_config.json"
 
@@ -47,16 +48,11 @@ class ConfiguracionMixin:
     def abrir_configuracion(self):
         """Abre la ventana modal de configuración"""
         config_window = tk.Toplevel(self.root)
+        config_window.withdraw()
         config_window.title('⚙️ Configuración')
-        config_window.geometry('380x180')
         config_window.resizable(False, False)
         config_window.configure(bg=BG_PRIMARY)
         config_window.transient(self.root)
-        config_window.grab_set()
-        config_window.update_idletasks()
-        x = config_window.winfo_screenwidth() // 2 - 380 // 2
-        y = config_window.winfo_screenheight() // 2 - 180 // 2
-        config_window.geometry(f'380x180+{x}+{y}')
         main_frame = ttk.Frame(config_window)
         main_frame.pack(fill='both', expand=True, padx=12, pady=12)
         main_frame.grid_columnconfigure(1, weight=1)
@@ -83,6 +79,18 @@ class ConfiguracionMixin:
         buttons_frame.grid(row=4, column=0, columnspan=3, sticky='ew', pady=(12, 0))
         ttk.Button(buttons_frame, text='❌ Cancelar', style='Minimal.TButton', command=config_window.destroy).pack(side='right', padx=(5, 0))
         ttk.Button(buttons_frame, text='✅ Guardar', style='Primary.TButton', command=lambda: self.guardar_y_cerrar(config_window)).pack(side='right', padx=(0, 5))
+        ttk.Separator(main_frame, orient='horizontal').grid(
+            row=5, column=0, columnspan=3, sticky='ew', pady=(14, 8))
+        ttk.Label(main_frame, text=f'Creado por {AUTOR}', style='Author.TLabel').grid(
+            row=6, column=0, columnspan=3, sticky='e')
+        config_window.update_idletasks()
+        width = max(420, config_window.winfo_reqwidth())
+        height = config_window.winfo_reqheight()
+        x = max(0, self.root.winfo_rootx() + (self.root.winfo_width() - width) // 2)
+        y = max(0, self.root.winfo_rooty() + (self.root.winfo_height() - height) // 2)
+        config_window.geometry(f'{width}x{height}+{x}+{y}')
+        config_window.deiconify()
+        config_window.grab_set()
 
     def seleccionar_fondo_config(self, tipo):
         """Selecciona archivo de fondo desde la ventana de configuración"""
