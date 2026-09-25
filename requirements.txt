@@ -1,0 +1,2 @@
+# Versión instalada con la que se verificaron las pruebas.
+pypdf==6.1.1
